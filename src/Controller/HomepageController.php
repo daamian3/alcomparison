@@ -13,7 +13,7 @@ class HomepageController extends Controller
      */
     public function indexAction(){
         return $this -> render('homepage.html.twig', array(
-            'number' => mt_rand(0, 100),
+            'number' => mt_rand(0, 1000),
         ));
     }
 }

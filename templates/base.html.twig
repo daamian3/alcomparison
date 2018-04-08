@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
     <head>
+        <title>{% block title %}Alcomparison - The Alcohol Comparison Website{% endblock %}</title>
         <meta charset="UTF-8">
-        <title>{% block title %}Alcomparison{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="description" content="You can comparise two different alkohols and choose the best of them.">
+        <meta name="Keywords" content="alcomparison, alkohol, comparison, whisky, whiskey, vine, vodka, tequila, beer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Damian Chojnacki">
+
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/reset.css') }}">
+            <link rel="stylesheet" href="{{ asset('styles/style.css') }}">
+        {% endblock %}
     </head>
     <body>
+        <!-- ładowanie się strony -->
+        <div id="loading" class="loading"></div>
+        <!-- tu można wyłączyc -->
+        <script>
+            document.getElementById("loading").style.display="block";
+        </script>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('scripts/jquery.js') }}"></script>
+            <script src="{{ asset('scripts/loader.js') }}"></script>
+            <script src="{{ asset('scripts/menu.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

@@ -1,5 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ number }}
+<main>
+    <div class="homepage__container">
+        <header class="homepage__header">
+            <a href="#" class="homepage__logo"><img src="{{ asset('images/logo.svg') }}" class="homepage__logo" />
+            <a href="#"><h1 class="homepage__name">Alcomparison</h1></a>
+                <button id="open" class="hamburger"></button>
+            <menu id="main_menu">
+                <ul class="homepage__menu">
+                    <li class="menu__button"><a href="#">Start</a></li>
+                    <li class="menu__button"><a href="#">Sign up</a></li>
+                    <li class="menu__button"><a href="#">Log in</a></li>
+                    <li class="menu__button"><a href="#">About us</a></li>
+                </ul>
+            </menu>
+        </header>
+        <div class="homepage__scroll-down"><a href="#"><img src="{{ asset('images/arrow.svg')}}"/></a></div>
+    </div>
+    <div class="homepage__middle">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus felis, faucibus eget dapibus eu, lobortis vitae leo. Phasellus at pretium sapien. Morbi pulvinar dolor sollicitudin venenatis ornare. In blandit, diam quis facilisis pulvinar, sit amet vel venenatis at pretium risus magna sit amet elit. Morbi at venenatis sapien. Integer lacus sem, gravida at leo sit amet, condimentum euismod felis.
+        </p>
+        <button>Join us even now!</button>
+    </div>
+    <div class="homepage__container"></div>
+    <div class="homepage__social">
+        <a href="http://www.facebook.com" class="facebook"><img src="{{ asset('images/facebook.svg') }}"/></a>
+        <a href="http://www.twitter.com" class="twitter"><img src="{{ asset('images/twitter.svg') }}"/></a>
+    </div>
+    <div class="homepage__scroll-up"><a href="#"><img src="{{ asset('images/arrow.svg')}}"/></a></div>
+    <footer id="footer" class="homepage__footer">
+        <h2>&copy; 2017 | Alcomparison - comparison of alcohol from all over the world</h2>
+    </footer>
+</main>
 {% endblock %}
