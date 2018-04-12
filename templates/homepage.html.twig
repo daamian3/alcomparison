@@ -10,8 +10,8 @@
             <menu id="main_menu">
                 <ul class="homepage__menu">
                     <li class="menu__button"><a href="#">Start</a></li>
-                    <li class="menu__button"><a href="#">Sign up</a></li>
-                    <li class="menu__button"><a href="#">Log in</a></li>
+                    <li id="register" class="menu__button"><a href="#register">Sign up</a></li>
+                    <li id="login" class="menu__button"><a href="#">Log in</a></li>
                     <li class="menu__button"><a href="#">About us</a></li>
                 </ul>
             </menu>
@@ -23,7 +23,7 @@
         </p>
         <button>Join us even now!</button>
     </div>
-    <div class="homepage__container"></div>
+    <div id="forms" class="homepage__container"></div>
     <div class="homepage__social">
         <a href="http://www.facebook.com" class="facebook"><img src="{{ asset('images/facebook.svg') }}"/></a>
         <a href="http://www.twitter.com" class="twitter"><img src="{{ asset('images/twitter.svg') }}"/></a>
@@ -33,4 +33,9 @@
         <h2>&copy; 2017 | Alcomparison - comparison of alcohol from all over the world</h2>
     </footer>
 </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('scripts/register.js') }}"></script>
 {% endblock %}

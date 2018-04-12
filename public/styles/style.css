@@ -38,6 +38,39 @@ body {
     border-top: 10px solid green; }
   100% {
     transform: rotate(360deg); } }
+.przyciemnienie {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  cursor: pointer; }
+
+.flash-notice, .flash-success, .flash-warning {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  padding: 15px;
+  color: black;
+  border-radius: 5px;
+  z-index: 100;
+  text-align: center;
+  font-size: 1.1em;
+  cursor: pointer; }
+.flash-notice {
+  background-color: #d6d3d1;
+  border: solid 2px #403f40; }
+.flash-success {
+  background-color: #c0e1c4;
+  border: solid 2px #0b8543; }
+.flash-warning {
+  background-color: #e0bbb4;
+  border: solid 2px #d4311d; }
+
 .homepage__container {
   background-size: cover;
   background-repeat: no-repeat;
@@ -233,6 +266,79 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   height: 5em;
   width: 100%; }
+
+#forms {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+input {
+  background-position: 13px;
+  background-repeat: no-repeat;
+  background-color: #111111;
+  padding: 10px 0 10px 50px;
+  background-size: 10%;
+  margin: 10px 0;
+  border: solid 2px #222222;
+  outline: #222222;
+  color: white;
+  font-size: 1em;
+  transition: .5s; }
+  input:focus {
+    outline: none;
+    border: solid 2px #444444; }
+
+.register {
+  text-align: center;
+  padding: 5% 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  position: relative; }
+  .register h2 {
+    font-size: 2em;
+    margin-bottom: 20px; }
+  .register__username {
+    background-image: url(../images/user.svg); }
+  .register__email {
+    background-image: url(../images/email.svg); }
+  .register__password {
+    background-image: url(../images/password.svg); }
+  .register__password-check {
+    background-image: url(../images/password.svg); }
+  .register__submit {
+    padding: 10px 15px;
+    background-color: #ec8c1b;
+    cursor: pointer;
+    transition: .3s;
+    border: none;
+    outline: none;
+    color: #dddddd;
+    font-size: 1em;
+    margin-top: 10px; }
+    .register__submit:hover {
+      background-color: #d2691a; }
+  .register__exit {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    opacity: .5;
+    transition: .3s;
+    cursor: pointer; }
+    .register__exit:hover {
+      opacity: .7; }
+  .register__progress {
+    -webkit-appearance: none;
+    box-sizing: border-box; }
+  .register__progress[value]::-webkit-progress-value {
+    background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.5)), -webkit-linear-gradient(left, #f44, #2db300 80%);
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+    transition: width 0.5s ease; }
+  .register .good {
+    border: solid 2px green; }
+  .register .bad {
+    border: solid 2px darkred; }
 
 @media screen and (max-width: 768px) {
   .sticky {

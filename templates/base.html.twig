@@ -21,11 +21,21 @@
         <script>
             document.getElementById("loading").style.display="block";
         </script>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="przyciemnienie">
+                    <div class="flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('scripts/jquery.js') }}"></script>
             <script src="{{ asset('scripts/loader.js') }}"></script>
             <script src="{{ asset('scripts/menu.js') }}"></script>
+            <script src="{{ asset('scripts/flash.js') }}"></script>
         {% endblock %}
     </body>
 </html>

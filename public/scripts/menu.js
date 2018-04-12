@@ -77,18 +77,3 @@ function menuSticky(){
 $(window).on("load", function(){
     menuSticky();
 });
-
-
-$(".homepage__scroll-down").click(function() {
-    $('html, body').animate({
-        scrollTop: $(".homepage__middle").offset().top
-    }, 1000);
-    return false;
-});
-
-$(".homepage__scroll-up").click(function() {
-    $('html, body').animate({
-        scrollTop: 0
-    }, 1000);
-    return false;
-});

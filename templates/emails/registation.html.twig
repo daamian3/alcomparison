@@ -1,0 +1,8 @@
+<div style="background: #568ddd; text-align: center; font-family: Verdana; padding: 10px 15px;"><h2 style="margin: 0; color: white">Blogmajster</h2></div>
+<div style="font-family: Verdana;">
+    <p>Cześć <b>{{ username }}</b>! Udało ci się zarejestrować!</p>
+
+    <p>Został tylko ostatni krok abyś mógł zacząć korzystać z naszego serwisu: zweryfikuj swoje konto kilkając w poniższy link:<br><a href="{{ url('confirm', {'username': username, 'token': token}) }}" style="font-weight: bold;">Potwierdź konto</a></p>
+
+    <p>Miłego korzystania z Blogmajster.</p>
+</div>
