@@ -1,11 +1,13 @@
 <div id="register" class="register">
-    <img id="register__close" class="register__exit" src="{{ asset('images/close.svg') }}"/>
+    <img id="registerClose" class="register__close" src="{{ asset('images/close.svg') }}"/>
     <h2>Rejestracja</h2>
     {{ form_start(form) }}
     {{ form_row(form.email) }}
     {{ form_row(form.username) }}
     {{ form_row(form.password) }}
     <progress class="register__progress"></progress>
+    {{ form_row(form.terms) }}
     {{ form_row(form.submit) }}
     {{ form_end(form) }}
 </div>
+

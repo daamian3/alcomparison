@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
@@ -19,16 +20,22 @@ class Users implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=30, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3, max=24)
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=8, max=4096)
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
@@ -67,14 +74,6 @@ class Users implements UserInterface, \Serializable
     public function getIsAdmin(): ?bool
     {
         return $this->is_admin;
-    }
-
-
-    public function setIsAdmin(bool $is_admin): self
-    {
-        $this->is_admin = $is_admin;
-
-        return $this;
     }
 
     public function setUsername(string $username): self

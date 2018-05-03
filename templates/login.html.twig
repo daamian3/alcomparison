@@ -1,0 +1,17 @@
+<form id="login" class="login" action="{{ path('login') }}" method="POST">
+    <img id="loginClose" class="login__close" src="{{ asset('images/close.svg') }}"/>
+    <h2>Logowanie</h2>
+    <div>
+        <input type="text" class="login__username" id="username" name="_username" autocomplete="off" placeholder="Login" aria-label="Login"/>
+    </div>
+
+    <div>
+        <input type="password" class="login__password" id="password" name="_password" placeholder="Hasło" aria-label="Hasło"/>
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <button type="submit" class="login__submit">Zaloguj</button>
+
+    <p class="login__register">Nie masz jeszcze konta? <a id="registerLink3" href="{{ path('homepage') }}#register">Zarejestruj się!</a></p>
+</form>

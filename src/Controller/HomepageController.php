@@ -6,9 +6,10 @@ use App\Entity\Users;
 use App\Form\UsersType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class HomepageController extends AbstractController
 {
@@ -17,35 +18,43 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer){
+    public function indexAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, UserInterface $user = null, ValidatorInterface $validator){
+
+        if($user){
+            $isActive = $user -> getIsActive();
+            if(!$isActive){
+                $this -> addFlash('warning', 'Konto nie zostało aktywowane');
+                return $this->redirectToRoute('logout');
+            }
+        }
 
         $user = new Users();
-        $form = $this -> createForm(UsersType::class, $user);
-        $form -> handleRequest($request);
+        $form = $this->createForm(UsersType::class, $user);
+        $form->handleRequest($request);
 
-        if ($form -> isSubmitted() && $form -> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            $currentUsername = $user -> getUsername();
+            $currentUsername = $user->getUsername();
 
-            $is_email_duplicate = $this -> getDoctrine()
+            $is_email_duplicate = $this->getDoctrine()
                 ->getRepository(Users::class)
                 ->findOneBy(array('username' => $currentUsername));
 
-            if ($is_email_duplicate){
-                $this -> addFlash('warning', 'Ta nazwa użytkownika jest już zajęta!');
+            if ($is_email_duplicate) {
+                $this->addFlash('warning', 'Ta nazwa użytkownika jest już zajęta!');
             }
 
-            $currentEmail = $user -> getEmail();
+            $currentEmail = $user->getEmail();
 
-            $is_username_duplicate = $this -> getDoctrine()
+            $is_username_duplicate = $this->getDoctrine()
                 ->getRepository(Users::class)
                 ->findOneBy(array('email' => $currentEmail));
 
-            if ($is_username_duplicate){
-                $this -> addFlash('warning', 'Ten adres email jest już zajęty!');
+            if ($is_username_duplicate) {
+                $this->addFlash('warning', 'Ten adres email jest już zajęty!');
             }
 
-            if ($is_username_duplicate || $is_email_duplicate){
+            if ($is_username_duplicate || $is_email_duplicate) {
                 return $this->redirectToRoute('homepage');
             }
 
@@ -63,35 +72,23 @@ class HomepageController extends AbstractController
                     $this->renderView(
                         'emails/registation.html.twig', array(
                             'username' => $currentUsername,
-                            'token' => $user -> getToken(),
+                            'token' => $user->getToken(),
                         )
                     ),
                     'text/html'
-                )
-            ;
+                );
 
             $mailer->send($message);
         }
 
-        return $this->render('homepage.html.twig');
-    }
+        else if($form->isSubmitted()){
+            $errors = $validator -> validate($form);
 
-    /**
-     * @Route("/register", name="register", methods={"POST"})
-     */
-    public function register(){
-            $user = new Users();
-            $form = $this -> createForm(UsersType::class, $user);
+            foreach ($errors as $error) {
+                $this -> addFlash('warning', $error -> getMessage());
+            }
 
-            return $this->render('register.html.twig',
-                array('form' => $form->createView())
-            );
         }
-
-    /**
-     * @Route("/login", name="login", methods={"POST"})
-     */
-    public function login(){
-        return $this->render('register.html.twig');
+        return $this->render('homepage.html.twig');
     }
 }

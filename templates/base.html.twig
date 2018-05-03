@@ -21,20 +21,31 @@
         <script>
             document.getElementById("loading").style.display="block";
         </script>
+
         {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="przyciemnienie">
+            <div class="przyciemnienie">
+                {% for message in messages %}
                     <div class="flash-{{ label }}">
-                        {{ message }}
+                        <div class="flash-{{ label }}__header">
+                            Uwaga!
+                        </div>
+
+                        <div class="flash-{{ label }}__content">
+                            {{ message|trans(messages, 'security') }}
+                        </div>
+
+                        <div class="flash-{{ label }}__footer">
+                            <button id="flashClose" class="flash-{{ label }}__close">Zamknij</button>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         {% endfor %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('scripts/jquery.js') }}"></script>
             <script src="{{ asset('scripts/loader.js') }}"></script>
-            <script src="{{ asset('scripts/menu.js') }}"></script>
             <script src="{{ asset('scripts/flash.js') }}"></script>
         {% endblock %}
     </body>

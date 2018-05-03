@@ -52,7 +52,6 @@ body{
   width: 100%;
   background-color: rgba(0, 0, 0, .5);
   z-index: 900;
-  cursor: pointer;
 }
 
 .flash{
@@ -61,29 +60,90 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20%;
-    padding: 15px;
-    color: black;
     border-radius: 5px;
     z-index: 100;
-    text-align: center;
     font-size: 1.1em;
-    cursor: pointer;
+    background-color: $main-color;
+    color: white;
+
+    &__header{
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 15px;
+      text-align: center;
+    }
+
+    &__content{
+      padding: 15px;
+    }
+
+    &__footer{
+      padding: 15px;
+      text-align: right;
+    }
+
+    &__close{
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: .3s;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      margin-top: 10px;
+      color: white;
+
+      &:hover{
+        background-color: #5f5e5f;
+      }
+    }
   }
 
   &-notice{
-    background-color: #d6d3d1;
-    border: solid 2px #403f40;
+    border: solid 2px #606060;
+
+    &__header{
+      background-color: #606060;
+    }
+
+    &__close {
+      background-color: #606060;
+
+      &:hover {
+        background-color: #747474;
+      }
+    }
   }
 
   &-success{
-    background-color: #c0e1c4;
-    border: solid 2px #0b8543;
+    border: solid 2px #004e24;
+
+    &__header{
+      background-color: #004e24;
+    }
+
+    &__close {
+      background-color: #004e24;
+
+      &:hover {
+        background-color: #006529;
+      }
+    }
   }
 
   &-warning{
-    background-color: #e0bbb4;
-    border: solid 2px #d4311d;
+    border: solid 2px #791300;
+
+    &__header{
+      background-color: #791300;
+    }
+
+    &__close {
+      background-color: #791300;
+
+      &:hover {
+        background-color: #951400;
+      }
+    }
   }
 }
 
@@ -181,7 +241,7 @@ body{
       width: 50%;
     }
 
-    button{
+    a{
       width: 40%;
       text-align: center;
       font-family: 'Righteous';
@@ -193,11 +253,22 @@ body{
       border-bottom-width: 10px;
       border-right-width: 10px;
       border-radius: 30px;
-      transition: 0.5s;
-      cursor: pointer;
 
-      &:hover{
-        padding-right: 10px;
+      cursor: pointer;
+      vertical-align: middle;
+      position: relative;
+
+      span{
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        width: 100%;
+        transition: .5s;
+      }
+
+      &:hover span{
+        left: 52%;
       }
     }
   }
@@ -409,6 +480,17 @@ input{
     background-image: url(../images/password.svg);
   }
 
+  &__terms-label{
+    display: inline;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  &__terms-input{
+    display: inline;
+    vertical-align: middle;
+  }
+
   &__submit{
     padding: 10px 15px;
     background-color: $secondary-color;
@@ -425,7 +507,7 @@ input{
     }
   }
 
-  &__exit{
+  &__close{
     height: 30px;
     width: 30px;
     position: absolute;
@@ -468,38 +550,573 @@ input{
   }
 }
 
-@media screen and (max-width: 768px) {
+.login-container{
+  position: relative;
+  width: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
-  .sticky{
-    position: static;
-    background-color: rgba(0, 0, 0, .4);
-    height: 5em;
-  }
+  .login{
+    background: transparent;
 
-  .hamburger{
-    display: block;
-    position: absolute;
-    right: 12%;
-  }
-
-  .homepage__menu{
-    margin-top: 20px;
-    display: none;
-    flex-direction: column;
-    text-align: right;
-    position: absolute;
-    top: 10%;
-    right: 10%;
-  }
-
-  .menu__button{
-    border: none;
-    padding: 10px 15px;
-
-    &:hover{
-      padding-bottom: 10px;
-      border-bottom-color: none;
-      color: white;
+    &__close{
+      right: 35%;
     }
   }
 }
+
+.login-background{
+  background-color: rgba(0 ,0 , 0, .8);
+}
+
+.login{
+  text-align: center;
+  padding: 5% 0;
+  background-color: rgba(0, 0, 0, .6);
+  width: 100%;
+  position: relative;
+
+  h2{
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  &__username{
+    background-image: url(../images/user.svg);
+  }
+
+  &__password{
+    background-image: url(../images/password.svg);
+  }
+
+  &__submit{
+    padding: 10px 15px;
+    background-color: $secondary-color;
+    cursor: pointer;
+    transition: .3s;
+    border: none;
+    outline: none;
+    color: #dddddd;
+    font-size: 1em;
+    margin-top: 10px;
+
+    &:hover{
+      background-color: #d2691a;
+    }
+  }
+
+  &__close{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    opacity: .5;
+    transition: .3s;
+    cursor: pointer;
+
+    &:hover{
+      opacity: .7;
+    }
+  }
+
+  &__register{
+    margin-top: 20px;
+  }
+
+  label{
+    display: block;
+  }
+}
+
+.disabled{
+  background-color: #7a7277;
+
+  &:hover {
+    background-color: #7a7277;
+  }
+}
+
+//START
+
+.parallax{
+  width: 100vw;
+  height: calc(100vh - 36px);
+  overflow: hidden;
+
+  &__layer{
+    width: 100%;
+    height: 100%;
+  }
+
+  &__background{
+    width: 110%;
+    height: 110%;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    background-image: url(../images/background_parallax.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__light{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: -5%;
+    background-image: url(../images/light.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: pulsate 12s 0.1s infinite;
+
+    &:nth-child(1){
+      left: 20%;
+    }
+    &:nth-child(2){
+      left: 50%;
+      animation-delay: 10s;
+    }
+    &:nth-child(3){
+      left: 80%;
+      animation-delay: 7s;
+    }
+  }
+
+  @keyframes pulsate {
+    0%{
+      opacity: 1;
+    }
+    40%{
+      opacity: .8;
+    }
+    50%{
+      opacity: .5;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+
+  &__table{
+    height: 65%;
+    width: 110%;
+    position: absolute;
+    top: 115%;
+    transform: translateY(-100%);
+    left: -5%;
+    background-repeat: no-repeat;
+    background-image: url(../images/table.png);
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__glass{
+    height: 15%;
+    width: 15%;
+    position: relative;
+    display: inline-block;
+    transform: translate(-50%, -50%);
+    top: -2%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    &:nth-child(1){
+      left: 5%;
+      background-image: url(../images/glass2.png);
+    }
+
+    &:nth-child(2){
+      left: 4%;
+      background-image: url(../images/glass4.png);
+      height: 10%;
+      width: 5%;
+    }
+
+    &:nth-child(3){
+      left: 2%;
+      background-image: url(../images/glass4.png);
+      height: 10%;
+      width: 5%;
+    }
+
+    &:nth-child(4){
+      left: 3%;
+      background-image: url(../images/glass4.png);
+      height: 10%;
+      width: 5%;
+    }
+
+    &:nth-child(5){
+      left: 11%;
+      background-image: url(../images/glass1.png);
+    }
+
+    &:nth-child(6){
+      left: 3%;
+      background-image: url(../images/glass5.png);
+      height: 16%;
+      width: 15%;
+    }
+
+    &:nth-child(7){
+      left: 5%;
+      background-image: url(../images/glass1.png);
+    }
+
+    &:nth-child(8){
+      left: 15%;
+      background-image: url(../images/glass3.png);
+    }
+  }
+
+  &__shelf{
+    height: 30%;
+    width: 30%;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 30%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image: url(../images/shelf.png);
+    background-size: contain;
+    background-position: center;
+
+    &:nth-child(1){
+      left: 25%;
+    }
+    &:nth-child(2){
+      left: 45%;
+    }
+  }
+
+  &__shelf-bar{
+    height: 20%;
+    width: 100%;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 0;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image: url(../images/bar-shelf.png);
+    background-size: contain;
+    background-position: center;
+  }
+
+  &__painting{
+    height: 20%;
+    width: 20%;
+    position: relative;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    top: 7.5%;
+    height: 10%;
+    width: 10%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    &:nth-child(1){
+      left: 0;
+      background-image: url(../images/painting1.jpg);
+    }
+
+    &:nth-child(2){
+      left: 10%;
+      background-image: url(../images/painting2.jpg);
+    }
+
+    &:nth-child(3){
+      left: 20%;
+      background-image: url(../images/painting3.jpg);
+    }
+
+    &:nth-child(4){
+      left: 30%;
+      background-image: url(../images/painting4.jpg);
+    }
+
+    &:nth-child(5){
+      left: 40%;
+      background-image: url(../images/painting5.jpg);
+    }
+
+    &:nth-child(6){
+      left: 50%;
+      background-image: url(../images/painting6.jpg);
+    }
+  }
+
+  &__chair{
+    height: 50%;
+    width: 25%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 105%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image: url(../images/chair.png);
+    background-size: contain;
+    background-position: center;
+    &:nth-child(1){
+      left: 0%;
+    }
+    &:nth-child(2){
+      left: 35%;
+    }
+    &:nth-child(3){
+      left: 65%;
+    }
+    &:nth-child(4){
+      left: 95%;
+    }
+  }
+
+  &__whisky{
+    height: 80%;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 2%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-image: url(../images/whisky.png);
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: .3s ease-out;
+
+    &:hover{
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &::after{
+      content: 'WHISKY';
+      display: block;
+      position: absolute;
+      top: 66%;
+      font-family: Righteous;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: .8em;
+    }
+  }
+
+  &__wine{
+    height: 80%;
+    width: 50%;
+    position: absolute;
+    left: 60%;
+    top: 2%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-image: url(../images/wine.png);
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: .3s ease-out;
+
+    &:hover{
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &::after{
+      content: 'WINE';
+      display: block;
+      position: absolute;
+      top: 50%;
+      font-family: Righteous;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__beer{
+      height: 50%;
+      width: 30%;
+      position: absolute;
+      left: 20%;
+      top: 15%;
+      transform: translate(-50%, -50%);
+      background-repeat: no-repeat;
+      background-image: url(../images/beer.png);
+      background-size: contain;
+      background-position: center;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: .3s ease-out;
+
+      &:hover{
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      &::after{
+        content: 'BEER';
+        display: block;
+        position: absolute;
+        top: 50%;
+        font-family: Righteous;
+        left: 56%;
+        transform: translate(-50%, -50%);
+      }
+  }
+
+  &__vodka {
+    height: 90%;
+    width: 20%;
+    position: absolute;
+    left: 70%;
+    top: -5%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-image: url(../images/vodka.png);
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: .3s ease-out;
+
+    &:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &::after {
+      content: 'VODKA';
+      display: block;
+      position: absolute;
+      color: black;
+      top: 52%;
+      font-family: Righteous;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: .8em;
+    }
+  }
+
+  &__brandy{
+    height: 65%;
+    width: 20%;
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-image: url(../images/brandy.png);
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: .3s ease-out;
+
+    &:hover{
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &::after{
+      content: 'BRANDY';
+      display: block;
+      position: absolute;
+      color: black;
+      top: 72%;
+      font-family: Righteous;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: .7em;
+    }
+  }
+
+  &__helper{
+    height: 240px;
+    width: 200px;
+    position: relative;
+    left: 10%;
+    top: 70%;
+    background-image: url(../images/sign.png);
+    background-size: cover;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: .3s ease-out;
+
+    &::after {
+      content: '?';
+      display: block;
+      position: absolute;
+      top: 66%;
+      font-family: Righteous;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3em;
+    }
+  }
+
+  &__login{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    border-bottom: solid 2px grey;
+    opacity: .5;
+    color: white;
+    font-size: 1em;
+    transition: .3s;
+    pointer-events: auto;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 1;
+      border-bottom: solid 2px $secondary-color;
+    }
+
+    &:focus{
+      outline: none;
+      transform: scale(1.1);
+      opacity: 1;
+      border-bottom: solid 2px $secondary-color;
+    }
+  }
+}
+
+  @media screen and (max-width: 768px) {
+
+    .sticky{
+      position: static;
+      background-color: rgba(0, 0, 0, .4);
+      height: 5em;
+    }
+
+    .hamburger{
+      display: block;
+      position: absolute;
+      right: 12%;
+    }
+
+    .homepage__menu{
+      margin-top: 20px;
+      display: none;
+      flex-direction: column;
+      text-align: right;
+      position: absolute;
+      top: 10%;
+      right: 10%;
+    }
+
+    .menu__button{
+      border: none;
+      padding: 10px 15px;
+
+      &:hover{
+        padding-bottom: 10px;
+        border-bottom-color: none;
+        color: white;
+      }
+    }
+  }

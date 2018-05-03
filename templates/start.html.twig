@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="przyciemnienie help">
+        <div class="flash-notice help">
+            <div class="flash-notice__header">
+                Pomoc
+            </div>
+
+            <div class="flash-notice__content">
+                Aby porównać alkohole, wybierz jego rodzaj klikając na jedną z butelek na ścianie.
+            </div>
+
+            <div class="flash-notice__footer">
+                <button id="flashClose" class="flash-notice__close">Zamknij</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loginBackground" class="przyciemnienie login-background">
+        <div id="login" class="login-container"></div>
+    </div>
+
+    <ul id="scene" class="parallax">
+        <li class="parallax__layer" data-depth="0.1"><div class="parallax__background"></div></li>
+        <li class="parallax__layer" data-depth="0.2">
+            <div class="parallax__light"></div>
+            <div class="parallax__light"></div>
+            <div class="parallax__light"></div>
+        </li>
+        <li class="parallax__layer" data-depth="0.1">
+            <div class="parallax__painting"></div>
+            <div class="parallax__painting"></div>
+            <div class="parallax__painting"></div>
+            <div class="parallax__painting"></div>
+            <div class="parallax__painting"></div>
+            <div class="parallax__painting"></div>
+        </li>
+        <li class="parallax__layer" data-depth="0.1">
+            <div class="parallax__shelf-bar"></div>
+        </li>
+        <li class="parallax__layer" data-depth="0.1">
+            <div class="parallax__shelf">
+                <div class="parallax__whisky"></div>
+                <div class="parallax__wine"></div>
+            </div>
+            <div class="parallax__shelf">
+                <div class="parallax__beer"></div>
+                <div class="parallax__brandy"></div>
+                <div class="parallax__vodka"></div>
+            </div>
+        </li>
+        <li class="parallax__layer" data-depth="0.5">
+            <div class="parallax__table">
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+                <div class="parallax__glass"></div>
+            </div>
+        </li>
+        <li class="parallax__layer" data-depth="0.5"><div id="helpShow" class="parallax__helper"></div></li>
+        <li class="parallax__layer" data-depth="0.6">
+            <div class="parallax__chair"></div>
+            <div class="parallax__chair"></div>
+            <div class="parallax__chair"></div>
+            <div class="parallax__chair"></div>
+        </li>
+        <li class="parallax__layer" data-depth="0">
+            {% if app.user %}
+                <div class="parallax__login">{{ app.user.username }}</div>
+            {% else %}
+                <button id="loginShow" class="parallax__login">Log in</button>
+            {% endif %}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('scripts/parallax.min.js') }}"></script>
+    <script src="{{ asset('scripts/start.js') }}"></script>
+{% endblock %}
